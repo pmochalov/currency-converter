@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "https://mchlv.ru/currency/static/css/main.d736c7d8.css",
+    "main.js": "https://mchlv.ru/currency/static/js/main.ea82a1fc.js",
+    "index.html": "https://mchlv.ru/currency/index.html",
+    "main.d736c7d8.css.map": "https://mchlv.ru/currency/static/css/main.d736c7d8.css.map",
+    "main.ea82a1fc.js.map": "https://mchlv.ru/currency/static/js/main.ea82a1fc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d736c7d8.css",
+    "static/js/main.ea82a1fc.js"
+  ]
+}

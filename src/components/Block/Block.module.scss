@@ -1,0 +1,46 @@
+@import './../../common/variables';
+
+.Block {
+
+    &__row {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        margin-bottom: 16px;
+
+        @media screen and (min-width: $screen-width) {
+            flex-direction: row;
+        }
+    }
+
+    &__input[type="number"],
+    &__select {
+        border: none;
+        padding: 16px;
+        margin: 0;
+        box-sizing: border-box;
+        height: 64px;
+        background-color: $input-bg;
+        outline: none;
+        width: 100%;
+        border: darken($app-bg, 5%) 1px solid;
+        font-size: 20px;
+    }
+
+    &__input[type="number"] {
+
+        margin-bottom: 8px;
+        
+
+        @media screen and (min-width: $screen-width) {
+            margin-right: 16px;
+            margin-bottom: 0;
+        }        
+    }
+
+    &__select {
+
+    }
+
+}
