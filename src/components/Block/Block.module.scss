@@ -1,20 +1,18 @@
-@import './../../common/variables';
+@import "./../../common/variables";
 
 .Block {
-
     &__row {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        margin-bottom: 16px;
 
         @media screen and (min-width: $screen-width) {
             flex-direction: row;
         }
     }
 
-    &__input[type="number"],
+    &__input[type="text"],
     &__select {
         border: none;
         padding: 16px;
@@ -26,21 +24,18 @@
         width: 100%;
         border: darken($app-bg, 5%) 1px solid;
         font-size: 20px;
+
+        &:focus {
+            border: darken($app-bg, 30%) 1px solid;
+        }
     }
 
-    &__input[type="number"] {
-
+    &__input[type="text"] {
         margin-bottom: 8px;
-        
 
         @media screen and (min-width: $screen-width) {
             margin-right: 16px;
             margin-bottom: 0;
-        }        
+        }
     }
-
-    &__select {
-
-    }
-
 }

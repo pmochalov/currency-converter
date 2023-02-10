@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
-@import './common/normalize';
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+@import "./common/normalize";
+@import "./common/variables";
 
 * {
     box-sizing: border-box;
@@ -13,8 +14,8 @@ html,
 body {
     width: 100%;
     height: 100%;
+    color: $font-color;
 }
-
 
 .Root {
     width: 100%;
@@ -24,4 +25,14 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+a {
+    color: $font-color;
+    text-decoration: none;
+    border-bottom: rgba($font-color, 20%) 1px solid;
+
+    &:hover {
+        border-bottom: rgba($font-color, 10%) 1px solid;
+    }
 }

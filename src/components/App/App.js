@@ -2,9 +2,14 @@ import React, { useEffect, useState, useRef } from 'react';
 import s from './App.module.scss';
 import Block from './../../components/Block/Block';
 
+const clearInputValue = (value) => {
+	return value.replace(/\.|,/, ',').match(/[0-9]*,?[0-9]*/)[0];
+}
+
 function App() {
 
 	const url = 'https://www.cbr-xml-daily.ru/daily_json.js';
+
 	const rubObj = {
 		RUB: {
 			CharCode: "RUB",
@@ -13,40 +18,39 @@ function App() {
 			Value: 1
 		}
 	};
-	const [fromValue, setFromValue] = useState(1)
-	const [fromSelect, setFromSelect] = useState('USD')
-	const [toValue, setToValue] = useState(0)
-	const [toSelect, setToSelect] = useState('RUB')
-	const currencies = useRef({})
+
+	const [fromValue, setFromValue] = useState(1);
+	const [fromSelect, setFromSelect] = useState('USD');
+
+	const [toValue, setToValue] = useState(0);
+	const [toSelect, setToSelect] = useState('RUB');
+
+	const currencies = useRef({});
+
 	const [date, setDate] = useState(null);
 
-	const getResult = (data) => {
-		const { actionFrom } = data;
+	const getResult = (fromTo = true) => {
 		const from = currencies.current[fromSelect];
 		const to = currencies.current[toSelect];
 
 		if (!from || !to) return;
 
-		if (actionFrom) {
-			const result = fromValue * (from.Value / from.Nominal) / (to.Value / to.Nominal);
-			setToValue(result);
+		if (fromTo) {
+			const result = `${fromValue}`.replace(/,/, '.') * (from.Value / from.Nominal) / (to.Value / to.Nominal);
+			setToValue(`${result}`.replace(/\./, ','));
 			return;
 		}
 
-		const result = toValue * (to.Value / to.Nominal) / (from.Value / from.Nominal);
-		setFromValue(result);
+		const result = `${toValue}`.replace(/,/, '.') * (to.Value / to.Nominal) / (from.Value / from.Nominal);
+		setFromValue(`${result}`.replace(/\./, ','));
 	}
 
 	const changeFrom = () => {
-		getResult({
-			actionFrom: true
-		})
+		getResult();
 	}
 
 	const changeTo = () => {
-		getResult({
-			actionFrom: false
-		})
+		getResult(false);
 	}
 
 	useEffect(() => {
@@ -56,48 +60,59 @@ function App() {
 				setDate(new Date(json.Date).toLocaleDateString());
 				new Promise((resolve) => {
 					currencies.current = { ...rubObj, ...json.Valute };
-					resolve(currencies.current)
+					resolve(currencies.current);
 				}).then(() => {
 					changeFrom()
 				})
 			})
 			.catch((err) => {
 				console.warn(err);
-				console.log('Не удалось загрузить курс валют.')
+				console.log('Не удалось загрузить курс валют.');
 			})
 	}, []);
 
 	useEffect(() => {
 		changeFrom();
-	}, [fromValue, fromSelect, toSelect])
+	}, [fromValue, fromSelect, toSelect]);
 
 	useEffect(() => {
 		changeTo();
-	}, [toValue])
+	}, [toValue]);
 
+	const onChangeInputFrom = (value) => {		
+		setFromValue(clearInputValue(value));
+	}
+
+	const onChangeInputTo = (value) => {
+		setToValue(clearInputValue(value));
+	}
 
 	return (
 		<div className={s.App}>
 
 			<h1 className={s.App__title}>Конвертер валют</h1>
 			<p>
-				Курс валют ЦБ РФ на {date}
+				Курс ЦБ РФ на {date}
 			</p>
 
 			<Block
 				value={fromValue}
 				currencies={currencies.current}
 				currency={fromSelect}
-				onChangeValue={(value) => setFromValue(value)}
+				onChangeValue={onChangeInputFrom}
 				onChangeSelect={(value) => setFromSelect(value)}
+				placeholder="From"
 			/>
+
+			<div className={s.App__delimeter}></div>
 
 			<Block
 				value={toValue}
 				currencies={currencies.current}
 				currency={toSelect}
-				onChangeValue={(value) => setToValue(value)}
+				onChangeValue={onChangeInputTo}
 				onChangeSelect={(value) => setToSelect(value)}
+				placeholder="To"
 			/>
 
 			<div className={s.App__footer}>

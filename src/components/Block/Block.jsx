@@ -7,16 +7,18 @@ const Block = ({
     currency,
     onChangeValue,
     onChangeSelect,
+    props,
 }) => {
     return (
         <>
             <div className={s.Block__row}>
                 <input
                     className={s.Block__input}
-                    type="number"
+                    type='text'
                     value={value}
                     onChange={(e) => onChangeValue(e.target.value)}
-                    placeholder="From"
+                    inputMode='decimal'
+                    {...props}
                 />
                 <select
                     className={s.Block__select}
