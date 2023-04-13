@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "https://mchlv.ru/currency/static/css/main.31418c44.css",
-    "main.js": "https://mchlv.ru/currency/static/js/main.6a5f0098.js",
-    "index.html": "https://mchlv.ru/currency/index.html",
-    "main.31418c44.css.map": "https://mchlv.ru/currency/static/css/main.31418c44.css.map",
-    "main.6a5f0098.js.map": "https://mchlv.ru/currency/static/js/main.6a5f0098.js.map"
+    "main.css": "https://mchlv.ru/currency-converter/static/css/main.89ca5c08.css",
+    "main.js": "https://mchlv.ru/currency-converter/static/js/main.0821cd3c.js",
+    "index.html": "https://mchlv.ru/currency-converter/index.html",
+    "main.89ca5c08.css.map": "https://mchlv.ru/currency-converter/static/css/main.89ca5c08.css.map",
+    "main.0821cd3c.js.map": "https://mchlv.ru/currency-converter/static/js/main.0821cd3c.js.map"
   },
   "entrypoints": [
-    "static/css/main.31418c44.css",
-    "static/js/main.6a5f0098.js"
+    "static/css/main.89ca5c08.css",
+    "static/js/main.0821cd3c.js"
   ]
 }
